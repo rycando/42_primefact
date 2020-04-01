@@ -13,7 +13,7 @@ RM = rm -rf
 all : $(NAME)
 
 $(NAME) :	$(OBJS)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -lm
 
 clean : 
 		$(RM) $(OBJS)

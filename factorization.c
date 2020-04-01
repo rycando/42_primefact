@@ -6,14 +6,15 @@
 /*   By: ryukim <ryukim@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/01 23:54:06 by ryukim            #+#    #+#             */
-/*   Updated: 2020/04/02 00:51:02 by ryukim           ###   ########.fr       */
+/*   Updated: 2020/04/02 01:06:46 by ryukim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
 
-int save;
+unsigned int    save;
 
 void            print_error()
 {
@@ -55,7 +56,7 @@ unsigned int    is_it_prime(unsigned int num)
     unsigned int    idx;
 
     idx = 2;
-    while (idx < sqrt(num))
+    while (idx <= sqrt(num))
     {
         if (num % idx == 0)
             return (idx);
@@ -66,28 +67,33 @@ unsigned int    is_it_prime(unsigned int num)
 
 void            recursive(unsigned int num)
 {
-    int div;
+    unsigned int    div;
 
+    
     if ((div = is_it_prime(num)))
     {
-        if (save == 0)
-            printf(" ");
         if (div != save)
         {
+            if (save != 0)
+                printf(" ");
             printf("%d", div);
             save = div;
         }
         recursive(num / div);
     }
+    else if (num != save)
+    {
+        if (save != 0)
+            printf(" ");
+        printf("%d", num);
+    }
 }
 
 int             main(int argc, char *argv[])
 {
-    unsigned int    num;
-
-    if (argc != 2 || argv[1] = NULL || *(argv[1]) = 0 || check_no_num(argv[1]))
+    if (argc != 2 || argv[1] == NULL || *(argv[1]) == 0 || check_no_num(argv[1]))
         print_error();
-    recursive(num);
+    recursive(ft_atoi(argv[1]));
     printf("\n");
     return (0);
 }
